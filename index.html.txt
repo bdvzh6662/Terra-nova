@@ -1,0 +1,591 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terra Nova Group -- De la Terre à la Pierre</title>
+<meta name="description" content="Terra Nova Group : Agrobusiness de précision & Immobilier de prestige.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--fd:#0b1a11;--f:#1a3a2a;--fm:#2d5a3d;--g:#c9a84c;--gl:#e2c47a;--gd:#9a7530;--cr:#faf6ee;--cd:#f0e8d6;--ch:#1c1c1c;--w:#ffffff;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--cr);color:var(--ch);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-track{background:var(--fd);}::-webkit-scrollbar-thumb{background:var(--g);}
+
+/* CURSOR */
+.cur{width:10px;height:10px;background:var(--g);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;mix-blend-mode:difference;}
+.cur.big{width:34px;height:34px;opacity:.6;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:70px;z-index:1000;display:flex;align-items:center;padding:0 60px;transition:background .4s,backdrop-filter .4s;}
+nav.scrolled{background:rgba(11,26,17,.93);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.15);}
+.n-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--w);letter-spacing:2px;}
+.n-logo s{color:var(--g);text-decoration:none;}
+.n-links{display:flex;align-items:center;gap:32px;margin-left:auto;list-style:none;}
+.n-links a{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);transition:color .2s;position:relative;}
+.n-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--g);transition:width .3s;}
+.n-links a:hover{color:var(--g);}
+.n-links a:hover::after{width:100%;}
+.n-cta{background:var(--g)!important;color:var(--fd)!important;padding:10px 22px;font-weight:600!important;}
+.n-cta::after{display:none!important;}
+.n-cta:hover{background:var(--gl)!important;}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;margin-left:auto;}
+.burger span{display:block;width:24px;height:1.5px;background:var(--w);}
+
+/* MOBILE MENU */
+#mm{display:none;position:fixed;inset:0;background:var(--fd);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+#mm.open{display:flex;}
+.mm-x{position:absolute;top:22px;right:26px;font-size:26px;color:rgba(255,255,255,.4);cursor:pointer;}
+.mm-x:hover{color:var(--g);}
+.mm-a{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--w);letter-spacing:2px;}
+.mm-a:hover{color:var(--g);}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--fd);position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.h-bg{position:absolute;inset:0;z-index:0;}
+.h-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 8% 50%,rgba(45,90,61,.45) 0%,transparent 55%),radial-gradient(ellipse 50% 60% at 92% 15%,rgba(201,168,76,.09) 0%,transparent 50%),radial-gradient(ellipse 60% 40% at 60% 100%,rgba(11,26,17,.9) 0%,transparent 50%);}
+.h-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.028) 1px,transparent 1px);background-size:72px 72px;}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);z-index:0;animation:of 12s ease-in-out infinite;}
+.orb1{width:400px;height:400px;background:rgba(45,90,61,.25);top:10%;left:-5%;animation-delay:0s;}
+.orb2{width:300px;height:300px;background:rgba(201,168,76,.07);top:50%;right:5%;animation-delay:4s;}
+.orb3{width:200px;height:200px;background:rgba(45,90,61,.2);bottom:10%;left:30%;animation-delay:8s;}
+@keyframes of{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-28px) scale(1.04);}}
+.h-inner{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding:120px 60px 80px;max-width:1200px;margin:0 auto;width:100%;}
+.h-tag{font-size:9px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:var(--g);margin-bottom:28px;opacity:0;animation:su .8s .3s both;}
+.h-tag::before{content:'';display:inline-block;width:28px;height:1px;background:var(--g);vertical-align:middle;margin-right:12px;}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,9vw,114px);font-weight:300;line-height:.95;letter-spacing:-2px;color:var(--w);opacity:0;animation:su .8s .5s both;}
+.h-title em{color:var(--g);font-style:italic;display:block;}
+.h-title .sm{font-size:.52em;color:rgba(255,255,255,.75);font-weight:300;letter-spacing:-1px;}
+.h-desc{max-width:470px;margin-top:34px;font-size:14px;color:rgba(255,255,255,.5);line-height:1.85;opacity:0;animation:su .8s .7s both;}
+.h-btns{display:flex;gap:14px;margin-top:46px;align-items:center;opacity:0;animation:su .8s .9s both;}
+.btn-p{background:var(--g);color:var(--fd);padding:15px 34px;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;transition:background .2s,transform .2s;display:inline-block;}
+.btn-p:hover{background:var(--gl);transform:translateY(-2px);}
+.btn-o{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);padding:14px 30px;font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;transition:border-color .2s,color .2s;}
+.btn-o:hover{border-color:var(--g);color:var(--g);}
+.h-scroll{position:relative;z-index:2;text-align:center;padding-bottom:32px;opacity:0;animation:fi 1s 1.4s both;}
+.scroll-l{display:inline-flex;flex-direction:column;align-items:center;gap:8px;font-size:8px;letter-spacing:4px;color:rgba(255,255,255,.22);text-transform:uppercase;}
+.scroll-l::after{content:'';width:1px;height:38px;background:linear-gradient(to bottom,var(--g),transparent);animation:sp 2s ease-in-out infinite;}
+@keyframes sp{0%,100%{opacity:.4;}50%{opacity:1;}}
+.h-stats{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(201,168,76,.12);}
+.hs{padding:26px 60px;border-right:1px solid rgba(201,168,76,.12);opacity:0;animation:su .6s both;}
+.hs:nth-child(1){animation-delay:1.0s;}
+.hs:nth-child(2){animation-delay:1.1s;}
+.hs:nth-child(3){animation-delay:1.2s;border-right:none;}
+.hs-v{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--g);line-height:1;}
+.hs-l{font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.28);text-transform:uppercase;margin-top:5px;}
+
+/* ANIMATIONS */
+@keyframes su{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fi{from{opacity:0;}to{opacity:1;}}
+.rev{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.rev.vis{opacity:1;transform:translateY(0);}
+
+/* SHARED */
+.sec{padding:110px 60px;max-width:1200px;margin:0 auto;}
+.eye{font-size:9px;font-weight:600;letter-spacing:6px;text-transform:uppercase;color:var(--g);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.eye::before{content:'';width:22px;height:1px;background:var(--g);}
+.sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,5vw,60px);font-weight:600;line-height:1.05;color:var(--fd);letter-spacing:-1px;}
+.sec-h.lt{color:var(--w);}
+.sec-h em{color:var(--g);font-style:italic;}
+.sec-p{font-size:14px;color:#666;line-height:1.85;max-width:480px;margin-top:18px;}
+.sec-p.lt{color:rgba(255,255,255,.48);}
+.rule{width:38px;height:1px;background:var(--g);margin:20px 0;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+
+/* ABOUT */
+.a-card{background:var(--fd);padding:46px 38px;position:relative;overflow:hidden;}
+.a-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 30%,rgba(45,90,61,.4) 0%,transparent 60%);}
+.a-big{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:300;color:var(--g);opacity:.15;position:absolute;top:-10px;right:16px;line-height:1;user-select:none;}
+.a-quote{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--w);line-height:1.5;position:relative;z-index:1;}
+.a-badge{display:inline-block;margin-top:26px;font-size:9px;letter-spacing:4px;color:var(--g);text-transform:uppercase;border-top:1px solid rgba(201,168,76,.3);padding-top:10px;position:relative;z-index:1;}
+.a-float{position:absolute;bottom:-20px;right:-20px;background:var(--g);padding:20px 24px;z-index:2;}
+.af-v{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--fd);line-height:1;}
+.af-l{font-size:8px;letter-spacing:3px;color:rgba(11,26,17,.6);margin-top:3px;text-transform:uppercase;}
+.pil-list{display:flex;flex-direction:column;gap:0;margin-top:36px;}
+.pil-item{display:flex;gap:22px;align-items:flex-start;padding:22px 0;border-bottom:1px solid var(--cd);transition:padding-left .3s;cursor:default;}
+.pil-item:hover{padding-left:8px;}
+.pil-item:first-child{border-top:1px solid var(--cd);}
+.pil-ico{width:42px;height:42px;flex-shrink:0;background:var(--fd);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.pil-t{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--fd);margin-bottom:4px;}
+.pil-s{font-size:12px;color:#888;line-height:1.6;}
+
+/* POLES */
+.poles-g{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--cd);}
+.pole{padding:58px 52px;position:relative;overflow:hidden;cursor:default;}
+.pole.agro{background:var(--fd);}
+.pole.immo{background:var(--f);}
+.pole::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;border:1px solid rgba(201,168,76,.1);bottom:-60px;right:-60px;transition:transform .6s;}
+.pole:hover::before{transform:scale(1.2);}
+.p-num{font-family:'Cormorant Garamond',serif;font-size:96px;font-weight:300;color:rgba(201,168,76,.07);position:absolute;top:-18px;right:16px;line-height:1;user-select:none;}
+.p-ico{font-size:38px;margin-bottom:22px;}
+.p-tag{font-size:9px;letter-spacing:5px;color:var(--g);text-transform:uppercase;margin-bottom:14px;}
+.p-title{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:var(--w);line-height:1.1;margin-bottom:18px;}
+.p-text{font-size:13px;color:rgba(255,255,255,.48);line-height:1.8;}
+.p-feats{margin-top:28px;display:flex;flex-direction:column;gap:9px;}
+.pf{display:flex;align-items:center;gap:12px;font-size:12px;color:rgba(255,255,255,.65);}
+.pf::before{content:'';width:16px;height:1px;background:var(--g);flex-shrink:0;}
+.p-cta{display:inline-flex;align-items:center;gap:10px;margin-top:32px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--g);transition:gap .3s;}
+.p-cta:hover{gap:16px;}
+.p-cta::after{content:'→';}
+
+/* PACK PRODUIT */
+.pack-step{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);padding:20px 26px;margin-bottom:2px;position:relative;transition:background .3s,border-color .3s;}
+.pack-step:hover{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.3);}
+.ps-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--g);opacity:.35;position:absolute;top:14px;right:18px;}
+.ps-tag{font-size:9px;letter-spacing:4px;color:var(--g);text-transform:uppercase;margin-bottom:7px;}
+.ps-t{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--w);}
+.ps-s{font-size:11px;color:rgba(255,255,255,.44);margin-top:5px;line-height:1.6;}
+.ps-arrow{text-align:center;padding:4px 0;color:var(--g);font-size:15px;opacity:.35;}
+
+/* NUMBERS BAR */
+.nums{background:var(--g);padding:72px 0;}
+.nums-g{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,.08);padding:0 60px;}
+.num-i{background:var(--g);padding:44px 30px;text-align:center;}
+.nv{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;color:var(--fd);line-height:1;}
+.nu{font-size:20px;}
+.nl{font-size:9px;letter-spacing:3px;color:rgba(11,26,17,.58);text-transform:uppercase;margin-top:9px;}
+
+/* VISION */
+.vis-q{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,50px);font-weight:300;line-height:1.3;color:var(--fd);}
+.vis-q em{color:var(--g);font-style:italic;}
+.vis-rule{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--g),transparent);margin:36px auto;}
+.vis-auth{font-size:11px;letter-spacing:4px;color:var(--g);text-transform:uppercase;}
+
+/* STEPS */
+.steps-g{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--cd);margin-top:56px;}
+.step{background:var(--w);padding:38px 28px;position:relative;overflow:hidden;transition:background .3s;}
+.step:hover{background:var(--fd);}
+.step:hover .st-title{color:var(--w);}
+.step:hover .st-text{color:rgba(255,255,255,.48);}
+.step:hover .snum{color:rgba(201,168,76,.28);}
+.snum{font-family:'Cormorant Garamond',serif;font-size:76px;font-weight:300;color:rgba(11,26,17,.06);line-height:1;position:absolute;top:-10px;right:8px;transition:color .3s;}
+.s-ico{font-size:26px;margin-bottom:18px;position:relative;z-index:1;}
+.st-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--fd);margin-bottom:11px;transition:color .3s;position:relative;z-index:1;}
+.st-text{font-size:12px;color:#888;line-height:1.7;transition:color .3s;position:relative;z-index:1;}
+
+/* INVESTIR */
+.inv-card{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);padding:24px 28px;display:flex;align-items:flex-start;gap:18px;margin-bottom:2px;transition:background .3s,border-color .3s;}
+.inv-card:hover{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.3);}
+.ic-ico{font-size:22px;flex-shrink:0;margin-top:2px;}
+.ic-t{font-size:14px;font-weight:600;color:var(--w);margin-bottom:4px;}
+.ic-s{font-size:12px;color:rgba(255,255,255,.43);line-height:1.6;}
+.cta-box{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);padding:40px 36px;margin-top:18px;}
+.cb-l{font-size:9px;letter-spacing:5px;color:var(--g);text-transform:uppercase;margin-bottom:14px;}
+.cb-amt{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--g);line-height:1;}
+.cb-sub{font-size:11px;color:rgba(255,255,255,.33);margin-top:5px;letter-spacing:2px;}
+.cb-btn{display:inline-block;margin-top:24px;background:var(--g);color:var(--fd);padding:13px 28px;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;transition:background .2s;}
+.cb-btn:hover{background:var(--gl);}
+.mini-g{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(201,168,76,.1);margin-top:16px;}
+.mi{background:rgba(255,255,255,.03);padding:20px 16px;text-align:center;}
+.mi-v{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--g);}
+.mi-l{font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.28);text-transform:uppercase;margin-top:5px;}
+
+/* CONTACT */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-g{display:flex;flex-direction:column;gap:7px;}
+.form-lb{font-size:9px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--g);}
+.form-in,.form-sel,.form-ta{background:var(--w);border:1px solid var(--cd);padding:13px 16px;font-family:'Outfit',sans-serif;font-size:13px;color:var(--ch);outline:none;width:100%;transition:border-color .2s;}
+.form-in:focus,.form-sel:focus,.form-ta:focus{border-color:var(--g);}
+.form-ta{resize:vertical;min-height:130px;}
+.form-sub{background:var(--fd);color:var(--w);padding:14px 32px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;transition:background .2s;align-self:flex-start;}
+.form-sub:hover{background:var(--f);}
+.ci-item{padding:24px 0;border-bottom:1px solid var(--cd);display:flex;gap:18px;align-items:flex-start;}
+.ci-ico{width:42px;height:42px;background:var(--fd);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.ci-lb{font-size:9px;letter-spacing:4px;color:var(--g);text-transform:uppercase;margin-bottom:5px;}
+.ci-v{font-size:14px;color:var(--fd);font-weight:500;}
+.ci-s{font-size:11px;color:#999;margin-top:2px;}
+
+/* FOOTER */
+footer{background:var(--fd);padding:56px 60px;position:relative;overflow:hidden;}
+footer::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(45,90,61,.18) 0%,transparent 60%);}
+.ft-in{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;padding-bottom:56px;border-bottom:1px solid rgba(201,168,76,.1);}
+.ft-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--w);letter-spacing:2px;margin-bottom:14px;}
+.ft-name span{color:var(--g);}
+.ft-slogan{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(255,255,255,.32);line-height:1.7;max-width:270px;}
+.ft-ct{font-size:9px;letter-spacing:5px;color:var(--g);text-transform:uppercase;margin-bottom:18px;}
+.ft-links{display:flex;flex-direction:column;gap:11px;}
+.ft-links a{font-size:13px;color:rgba(255,255,255,.38);transition:color .2s;}
+.ft-links a:hover{color:var(--g);}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;padding-top:28px;}
+.ft-copy{font-size:10px;color:rgba(255,255,255,.18);letter-spacing:2px;}
+.ft-leg{display:flex;gap:22px;}
+.ft-leg a{font-size:10px;color:rgba(255,255,255,.18);letter-spacing:1px;transition:color .2s;}
+.ft-leg a:hover{color:var(--g);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .g2{grid-template-columns:1fr;gap:48px;}
+  .poles-g{grid-template-columns:1fr;}
+  .nums-g{grid-template-columns:1fr 1fr;}
+  .steps-g{grid-template-columns:1fr 1fr;}
+  .ft-top{grid-template-columns:1fr 1fr;gap:36px;}
+  .h-stats{grid-template-columns:1fr;}
+  .hs{border-right:none;border-bottom:1px solid rgba(201,168,76,.12);}
+}
+@media(max-width:768px){
+  nav{padding:0 24px;}
+  .n-links{display:none;}
+  .burger{display:flex;}
+  .h-inner,.sec{padding:90px 24px 70px;}
+  .pole{padding:40px 28px;}
+  .nums-g{padding:0 24px;grid-template-columns:1fr 1fr;}
+  .steps-g{grid-template-columns:1fr;}
+  footer{padding:44px 24px;}
+  .ft-top{grid-template-columns:1fr;}
+  .ft-bot{flex-direction:column;gap:14px;text-align:center;}
+  .form-row{grid-template-columns:1fr;}
+  .g4{grid-template-columns:1fr 1fr;}
+  .mini-g{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+
+<!-- MOBILE MENU -->
+<div id="mm">
+  <span class="mm-x" onclick="document.getElementById('mm').classList.remove('open')">✕</span>
+  <a class="mm-a" href="#about" onclick="document.getElementById('mm').classList.remove('open')">Le Groupe</a>
+  <a class="mm-a" href="#poles" onclick="document.getElementById('mm').classList.remove('open')">Nos Pôles</a>
+  <a class="mm-a" href="#produit" onclick="document.getElementById('mm').classList.remove('open')">Récolte-Bâtiment</a>
+  <a class="mm-a" href="#investir" onclick="document.getElementById('mm').classList.remove('open')">Investir</a>
+  <a class="mm-a" href="#contact" onclick="document.getElementById('mm').classList.remove('open')">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="n-logo">Terra <s>Nova</s> Group</div>
+  <ul class="n-links">
+    <li><a href="#about">Le Groupe</a></li>
+    <li><a href="#poles">Nos Pôles</a></li>
+    <li><a href="#produit">Récolte-Bâtiment</a></li>
+    <li><a href="#processus">Processus</a></li>
+    <li><a href="#investir">Investir</a></li>
+    <li><a href="#contact" class="n-cta">Nous Contacter</a></li>
+  </ul>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+  <div class="h-inner">
+    <div class="h-tag">Agrobusiness · Immobilier · Prestige</div>
+    <h1 class="h-title">De la<br><em>Terre</em><span class="sm">à la Pierre.</span></h1>
+    <p class="h-desc">Terra Nova Group bâtit une synergie unique entre l'agrobusiness de précision et l'immobilier de prestige en Afrique Centrale. La terre finance la pierre. La pierre valorise la terre.</p>
+    <div class="h-btns">
+      <a href="#poles" class="btn-p">Découvrir Nos Pôles</a>
+      <a href="#investir" class="btn-o">Opportunités Investisseurs</a>
+    </div>
+  </div>
+  <div class="h-scroll"><div class="scroll-l">Défiler</div></div>
+  <div class="h-stats">
+    <div class="hs"><div class="hs-v">2</div><div class="hs-l">Secteurs Piliers Intégrés</div></div>
+    <div class="hs"><div class="hs-v">150M</div><div class="hs-l">FCFA -- CA cible An 5</div></div>
+    <div class="hs"><div class="hs-v">5 Ans</div><div class="hs-l">Horizon Stratégique 2025–2030</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:var(--w);border-top:1px solid var(--cd);">
+  <div class="sec">
+    <div class="g2">
+      <div class="rev">
+        <div style="position:relative;margin-bottom:28px;">
+          <div class="a-card">
+            <div class="a-big">TNG</div>
+            <div class="a-quote">« Nous ne choisissons pas entre la terre et la pierre. Nous les faisons travailler ensemble. »</div>
+            <div class="a-badge">Terra Nova Group -- Vision Fondatrice</div>
+          </div>
+          <div class="a-float"><div class="af-v">2025</div><div class="af-l">Fondé en</div></div>
+        </div>
+      </div>
+      <div class="rev">
+        <div class="eye">Le Groupe</div>
+        <h2 class="sec-h">Un modèle hybride <em>sans équivalent.</em></h2>
+        <div class="rule"></div>
+        <p class="sec-p">Terra Nova Group est une SAS créée pour exploiter la complémentarité entre deux secteurs à fort potentiel. Notre modèle génère des revenus agricoles rapides pour financer des projets immobiliers premium, créant un cercle vertueux auto-finançant et durable.</p>
+        <div class="pil-list">
+          <div class="pil-item">
+            <div class="pil-ico">🌱</div>
+            <div><div class="pil-t">Agrobusiness de Précision</div><div class="pil-s">Maraîchage sous serre, cultures d'exportation, location de terres équipées à fort rendement.</div></div>
+          </div>
+          <div class="pil-item">
+            <div class="pil-ico">🏛️</div>
+            <div><div class="pil-t">Immobilier de Prestige</div><div class="pil-s">Promotion, viabilisation foncière, gestion locative de patrimoine haut de gamme.</div></div>
+          </div>
+          <div class="pil-item">
+            <div class="pil-ico">⚡</div>
+            <div><div class="pil-t">Pack Récolte-Bâtiment™</div><div class="pil-s">Notre produit innovant : investissez dans la terre, récoltez cash + droits immobiliers.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLES -->
+<section id="poles" style="background:var(--cr);">
+  <div style="max-width:1200px;margin:0 auto;padding:110px 60px 60px;">
+    <div class="rev">
+      <div class="eye">Nos Activités</div>
+      <h2 class="sec-h">Deux pôles. <em>Une vision.</em></h2>
+    </div>
+  </div>
+  <div class="poles-g">
+    <div class="pole agro rev">
+      <div class="p-num">01</div>
+      <div class="p-ico">🌾</div>
+      <div class="p-tag">Pôle Agrobusiness</div>
+      <div class="p-title">Agriculture<br>de Précision</div>
+      <p class="p-text">Nous exploitons l'agriculture de précision pour générer des flux de trésorerie rapides et récurrents. Maraîchage premium sous serre, cultures à haute valeur ajoutée, et location de terres équipées.</p>
+      <div class="p-feats">
+        <div class="pf">Maraîchage Premium Sous Serre</div>
+        <div class="pf">Irrigation Goutte-à-Goutte Certifiée</div>
+        <div class="pf">Contrats Hôteliers & Export</div>
+        <div class="pf">Location Terres Équipées -- Marge 65%</div>
+      </div>
+      <a href="#contact" class="p-cta">Partenariat Agricole</a>
+    </div>
+    <div class="pole immo rev">
+      <div class="p-num">02</div>
+      <div class="p-ico">🏗️</div>
+      <div class="p-tag">Pôle Immobilier</div>
+      <div class="p-title">Immobilier<br>de Prestige</div>
+      <p class="p-text">Financés par les revenus agricoles, nos projets immobiliers premium visent une clientèle exigeante : villas haut de gamme, résidences sécurisées, viabilisation foncière et gestion locative.</p>
+      <div class="p-feats">
+        <div class="pf">Villas & Résidences Sécurisées</div>
+        <div class="pf">Viabilisation & Lotissement Premium</div>
+        <div class="pf">Gestion Locative Déléguée -- 8–12%</div>
+        <div class="pf">Accompagnement Diaspora Africaine</div>
+      </div>
+      <a href="#contact" class="p-cta">Acquérir un Bien</a>
+    </div>
+  </div>
+</section>
+
+<!-- PACK PRODUIT -->
+<section id="produit" style="background:var(--fd);">
+  <div style="max-width:1200px;margin:0 auto;padding:110px 60px;">
+    <div class="g2" style="gap:72px;">
+      <div class="rev">
+        <div style="display:inline-block;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);padding:6px 14px;font-size:8px;letter-spacing:4px;color:var(--g);text-transform:uppercase;margin-bottom:22px;">Innovation Exclusive</div>
+        <div class="eye" style="color:var(--g)">Notre Produit Phare</div>
+        <h2 class="sec-h lt">Pack<br><em>Récolte-Bâtiment™</em></h2>
+        <div class="rule"></div>
+        <p class="sec-p lt">Un produit financier hybride inédit sur le marché. Investissez dans une parcelle agricole Terra Nova et recevez un double retour : cash sur les récoltes + droits immobiliers valorisés.</p>
+        <div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:18px;align-items:center;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--g);">40%</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.52);line-height:1.6;">Cash sur les récoltes -- versé trimestriellement dès le 1er cycle agricole</div>
+          </div>
+          <div style="width:100%;height:1px;background:rgba(201,168,76,.1)"></div>
+          <div style="display:flex;gap:18px;align-items:center;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--g);">60%</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.52);line-height:1.6;">Droits immobiliers -- accès prioritaire aux biens Terra Nova à prix investisseur</div>
+          </div>
+        </div>
+        <a href="#contact" class="btn-p" style="margin-top:36px;display:inline-block;">Souscrire au Pack</a>
+      </div>
+      <div class="rev">
+        <div class="pack-step"><div class="ps-num">01</div><div class="ps-tag">Étape 1</div><div class="ps-t">Votre Investissement</div><div class="ps-s">Vous financez une ou plusieurs parcelles agricoles équipées Terra Nova à partir de 2M FCFA.</div></div>
+        <div class="ps-arrow">↓</div>
+        <div class="pack-step"><div class="ps-num">02</div><div class="ps-tag">Étape 2</div><div class="ps-t">Production & Récoltes</div><div class="ps-s">Nos agronomes gèrent intégralement la production. Première récolte commercialisable sous 90 à 180 jours.</div></div>
+        <div class="ps-arrow">↓</div>
+        <div class="pack-step"><div class="ps-num">03</div><div class="ps-tag">Étape 3</div><div class="ps-t">Double Retour</div><div class="ps-s">40% en liquidités versées + 60% crédités en droits immobiliers préférentiels Terra Nova.</div></div>
+        <div class="ps-arrow">↓</div>
+        <div class="pack-step"><div class="ps-num">04</div><div class="ps-tag">Résultat</div><div class="ps-t">ROI ×3,5 en 5 ans</div><div class="ps-s">Retour combiné agro + immo estimé à ×3,5 sur 5 ans. Break-even : 18 mois.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHIFFRES -->
+<div class="nums">
+  <div class="nums-g">
+    <div class="num-i rev"><div class="nv">150<span class="nu">M</span></div><div class="nl">FCFA CA cible An 5</div></div>
+    <div class="num-i rev"><div class="nv">28<span class="nu">%</span></div><div class="nl">Marge nette An 5</div></div>
+    <div class="num-i rev"><div class="nv">18<span class="nu">M</span></div><div class="nl">Mois au break-even</div></div>
+    <div class="num-i rev"><div class="nv">3,5<span class="nu">×</span></div><div class="nl">ROI investisseurs 5 ans</div></div>
+  </div>
+</div>
+
+<!-- VISION -->
+<section style="background:var(--cr);padding:110px 60px;text-align:center;">
+  <div style="max-width:780px;margin:0 auto;" class="rev">
+    <div class="vis-rule"></div>
+    <blockquote class="vis-q">« La <em>vraie richesse</em> naît quand on fait travailler la <em>nature</em> et l'ambition humaine dans le même sens. »</blockquote>
+    <div class="vis-auth" style="margin-top:28px;">-- Terra Nova Group, Vision 2025–2030</div>
+    <div class="vis-rule"></div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section id="processus" style="background:var(--w);">
+  <div class="sec">
+    <div class="rev">
+      <div class="eye">Comment Ça Marche</div>
+      <h2 class="sec-h">Notre <em>processus</em> en 4 étapes.</h2>
+    </div>
+    <div class="steps-g">
+      <div class="step rev"><div class="snum">01</div><div class="s-ico">🤝</div><div class="st-title">Premier Contact</div><div class="st-text">Échange avec notre équipe pour qualifier votre projet : investisseur, partenaire agricole ou acquéreur immobilier.</div></div>
+      <div class="step rev"><div class="snum">02</div><div class="s-ico">📋</div><div class="st-title">Étude Personnalisée</div><div class="st-text">Analyse de votre profil, présentation des opportunités adaptées, simulation de rendement et montage du dossier.</div></div>
+      <div class="step rev"><div class="snum">03</div><div class="s-ico">✍️</div><div class="st-title">Formalisation</div><div class="st-text">Signature des accords notariés, déblocage des fonds, lancement de la production ou du projet immobilier.</div></div>
+      <div class="step rev"><div class="snum">04</div><div class="s-ico">📈</div><div class="st-title">Suivi & Rendement</div><div class="st-text">Reporting trimestriel, tableau de bord en ligne, versement des revenus et droits immobiliers accumulés.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIR -->
+<section id="investir" style="background:var(--fd);">
+  <div style="max-width:1200px;margin:0 auto;padding:110px 60px;">
+    <div class="g2" style="gap:72px;align-items:start;">
+      <div class="rev">
+        <div class="eye" style="color:var(--g)">Opportunités</div>
+        <h2 class="sec-h lt">Pourquoi <em>investir</em><br>avec nous ?</h2>
+        <div class="rule"></div>
+        <p class="sec-p lt">Terra Nova Group offre aux investisseurs un accès unique à deux marchés porteurs de la région, avec un modèle éprouvé qui protège et multiplie le capital.</p>
+        <div style="margin-top:32px;">
+          <div class="inv-card"><div class="ic-ico">🛡️</div><div><div class="ic-t">Double Sécurité Sectorielle</div><div class="ic-s">Si l'immobilier ralentit, l'agro couvre les charges. Les deux secteurs se protègent mutuellement.</div></div></div>
+          <div class="inv-card"><div class="ic-ico">📊</div><div><div class="ic-t">Transparence Totale</div><div class="ic-s">Reporting trimestriel, auditeur externe indépendant, tableau de bord investisseur en temps réel.</div></div></div>
+          <div class="inv-card"><div class="ic-ico">🌍</div><div><div class="ic-t">Upside Régional</div><div class="ic-s">Participation à l'expansion régionale. Votre capital grandit avec le groupe.</div></div></div>
+          <div class="inv-card"><div class="ic-ico">🏡</div><div><div class="ic-t">Droits Préférentiels Immo</div><div class="ic-s">Accès prioritaire aux biens Terra Nova à 15–25% en dessous du marché.</div></div></div>
+        </div>
+      </div>
+      <div class="rev">
+        <div class="cta-box">
+          <div class="cb-l">Levée de Fonds en cours</div>
+          <div class="cb-amt">8 000 000</div>
+          <div class="cb-sub">FCFA -- Série A · Clôture 2025</div>
+          <p style="font-size:12px;color:rgba(255,255,255,.42);margin-top:18px;line-height:1.7;">Rejoignez les investisseurs fondateurs et bénéficiez de conditions préférentielles réservées aux premiers entrants.</p>
+          <a href="#contact" class="cb-btn">Demander le Dossier Investisseur</a>
+        </div>
+        <div class="mini-g">
+          <div class="mi"><div class="mi-v">×3,5</div><div class="mi-l">ROI cible 5 ans</div></div>
+          <div class="mi"><div class="mi-v">18</div><div class="mi-l">Mois break-even</div></div>
+          <div class="mi"><div class="mi-v">28%</div><div class="mi-l">Marge nette An 5</div></div>
+          <div class="mi"><div class="mi-v">SAS</div><div class="mi-l">Structure juridique</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--cr);">
+  <div style="max-width:1200px;margin:0 auto;padding:110px 60px;">
+    <div class="g2" style="gap:72px;align-items:start;">
+      <div class="rev">
+        <div class="eye">Parlons-Nous</div>
+        <h2 class="sec-h">Prenez contact<br>avec <em>nos équipes.</em></h2>
+        <div class="rule"></div>
+        <p class="sec-p">Investisseur, partenaire agricole ou futur acquéreur, notre équipe est disponible pour étudier votre projet.</p>
+        <div style="margin-top:36px;">
+          <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-lb">Siège Social</div><div class="ci-v">Brazzaville, Congo</div><div class="ci-s">République du Congo -- Afrique Centrale</div></div></div>
+          <div class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lb">Téléphone</div><div class="ci-v">+242 06 475 24 88</div><div class="ci-s">Lun–Ven, 8h–18h GMT+1</div></div></div>
+          <div class="ci-item"><div class="ci-ico">✉️</div><div><div class="ci-lb">Email</div><div class="ci-v">contact@terranova-group.com</div><div class="ci-s">Réponse sous 24–48h ouvrées</div></div></div>
+          <div class="ci-item"><div class="ci-ico">🌐</div><div><div class="ci-lb">Web</div><div class="ci-v">terranova-group.com</div><div class="ci-s">LinkedIn · Instagram · WhatsApp Business</div></div></div>
+        </div>
+      </div>
+      <div class="rev">
+        <div style="font-size:9px;letter-spacing:5px;color:var(--g);text-transform:uppercase;margin-bottom:24px;">Formulaire de Contact</div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div class="form-row">
+            <div class="form-g"><label class="form-lb">Prénom</label><input class="form-in" type="text" placeholder="Jean-Pierre"></div>
+            <div class="form-g"><label class="form-lb">Nom</label><input class="form-in" type="text" placeholder="Ibara"></div>
+          </div>
+          <div class="form-g"><label class="form-lb">Email</label><input class="form-in" type="email" placeholder="votre@email.com"></div>
+          <div class="form-g"><label class="form-lb">Téléphone</label><input class="form-in" type="tel" placeholder="+242 06 475 24 88"></div>
+          <div class="form-g">
+            <label class="form-lb">Objet</label>
+            <select class="form-sel">
+              <option value="">Sélectionnez votre demande</option>
+              <option>Dossier Investisseur -- Série A</option>
+              <option>Pack Récolte-Bâtiment™</option>
+              <option>Acquisition Immobilière</option>
+              <option>Partenariat Agricole</option>
+              <option>Autre demande</option>
+            </select>
+          </div>
+          <div class="form-g"><label class="form-lb">Message</label><textarea class="form-ta" placeholder="Décrivez votre projet…"></textarea></div>
+          <button class="form-sub" onclick="this.textContent='Envoyé ✓';this.style.background='#2d5a3d';setTimeout(()=>{this.textContent='Envoyer le Message →';this.style.background='';},3000)">Envoyer le Message →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div>
+        <div class="ft-name">Terra <span>Nova</span> Group</div>
+        <div class="ft-slogan">« De la terre à la pierre : cultiver l'excellence, bâtir l'avenir. »</div>
+        <div style="margin-top:26px;display:flex;gap:12px;">
+          <a href="#" style="width:34px;height:34px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,.35);transition:all .2s;" onmouseover="this.style.background='rgba(201,168,76,.15)';this.style.color='#c9a84c'" onmouseout="this.style.background='rgba(255,255,255,.06)';this.style.color='rgba(255,255,255,.35)'">in</a>
+          <a href="#" style="width:34px;height:34px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,.35);transition:all .2s;" onmouseover="this.style.background='rgba(201,168,76,.15)';this.style.color='#c9a84c'" onmouseout="this.style.background='rgba(255,255,255,.06)';this.style.color='rgba(255,255,255,.35)'">▶</a>
+          <a href="#" style="width:34px;height:34px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:13px;color:rgba(255,255,255,.35);transition:all .2s;" onmouseover="this.style.background='rgba(201,168,76,.15)';this.style.color='#c9a84c'" onmouseout="this.style.background='rgba(255,255,255,.06)';this.style.color='rgba(255,255,255,.35)'">✉</a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-ct">Le Groupe</div>
+        <div class="ft-links"><a href="#about">Notre Vision</a><a href="#poles">Pôle Agrobusiness</a><a href="#poles">Pôle Immobilier</a><a href="#produit">Pack Récolte-Bâtiment™</a></div>
+      </div>
+      <div>
+        <div class="ft-ct">Investisseurs</div>
+        <div class="ft-links"><a href="#investir">Opportunités</a><a href="#investir">Levée de Fonds</a><a href="#processus">Notre Processus</a><a href="#contact">Dossier Investisseur</a></div>
+      </div>
+      <div>
+        <div class="ft-ct">Contact</div>
+        <div class="ft-links"><a href="mailto:contact@terranova-group.com">contact@terranova-group.com</a><a href="tel:+242064752488">+242 06 475 24 88</a><a href="#contact">Formulaire de Contact</a><a href="#">LinkedIn</a></div>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <div class="ft-copy">© 2025 Terra Nova Group SAS -- Tous droits réservés</div>
+      <div class="ft-leg"><a href="#">Mentions Légales</a><a href="#">Confidentialité</a><a href="#">CGU</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const cur=document.getElementById('cur');
+document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+document.querySelectorAll('a,button,.pil-item,.step,.inv-card,.pole').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
+});
+
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// Reveal on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*80);obs.unobserve(e.target);}
+  });
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rev').forEach(r=>obs.observe(r));
+
+// Mobile menu
+document.getElementById('burger').addEventListener('click',()=>document.getElementById('mm').classList.add('open'));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
+</html>
